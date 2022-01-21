@@ -1,10 +1,24 @@
 const funcioarios = require("../dados.js");
 
-function sortUsers(x, y){
-    if (x.nome < y.nome) {return -1;}
-    if (x.nome > y.nome) {return 1;}
-    return 0;
-}
-const aniver = funcioarios.sort(sortUsers);
+function funcionariosComRamais(req, res) {
 
-module.exports = aniver;
+    function ColocarEmOrdemAlfabetica(a, b) {
+        return (a.nome > b.nome) ? 1 : ((b.nome > a.nome) ? - 1 : 0);
+    }
+
+    function criarNovoVetor(param) {
+        const novoJson = {};
+        
+        novoJson.nome = param.nome;
+        novoJson.ramal = param.ramal;
+
+        return novoJson;
+    }
+
+    const vetorEmOrdemAlfabetica = funcioarios.sort(ColocarEmOrdemAlfabetica);
+    const filtragem = vetorEmOrdemAlfabetica.map(criarNovoVetor);
+
+    res.json(filtragem);
+} 
+
+module.exports = funcionariosComRamais;
