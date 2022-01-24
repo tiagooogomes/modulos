@@ -15,34 +15,29 @@
         <main>
             <h1>Consulta a Empresa</h1>
             <div id="filtros">
-                <select onclick="definirplaceholder()" id="selecao">
-                    <option disabled value selected ></option>
+                <select id="selecao">
+                    <option disabled value selected >Setor</option>
                     <option value="RH">Recursos Humanos</option>
                     <option value="administração">Administração</option>
                     <option value="operação">Operação</option>
                     <option value="comercial">Comercial</option>
                     <option value="financeiro">Financiero</option>
                 </select>
-                <input type="button"  value="Ramal" id="botao" onclick="funcionabotao()"> 
-                <input type="number" min="1" max="12" id="num" placeholder="Aniversario">
+                <input type="button"  value="Ramal" id="botao" > 
+                <input type="number" min="1" max="12" id="numero" placeholder="Aniversario">
             </div>
 
             <!-- <div id="tabelapai"> -->
                 <table>
                     <thead id="cabeca">
-                        <th>Nome</th>
-                        <th>Ramal</th>
+                        <!-- <th>Nome</th>
+                        <th>Ramal</th> -->
                     </thead>
                     <tbody id="tabela">
 
                     </tbody>
                 </table>
-            <!-- </div> -->
-
-
-
-
-            
+            <!-- </div> --> 
         </main>
         <footer>
             <h2>By Apirante Tiago Santos</h2>

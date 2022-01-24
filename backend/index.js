@@ -8,12 +8,10 @@ const port = 3001;
 
 app.use(cors());
 
-// app.use(express.static('../frontend/src'));
+// teste.post('/teste', function(req, res) { 
+//     const acess = req.body;
 
-teste.post('/teste', function(req, res) { 
-    const acess = req.body;
-
-})
+// })
 app.get('/setor', funcionariosPorSetor);
 app.get('/aniversario', funcionariosAniversariantes);
 app.get('/ramal', funcionariosComRamais);

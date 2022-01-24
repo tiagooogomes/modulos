@@ -1,15 +1,33 @@
-const apiUrl = 'http://localhost:3001'
+const colocarNaTabela = document.getElementById("tabela");
+const imputNumber = document.getElementById('numero');
+const imputButton = document.getElementById('botao');
+const select = document.getElementById('selecao');
+const apiUrl = 'http://localhost:3001';
 
-const botao = document.getElementById('botao');
-const div = document.getElementById('div');
-const imputText = document.getElementById('num')
+imputButton.addEventListener('click', function funcionabotao() {
+    const complemntoUrl = `/ramal`;
 
-function funcionabotao() {
+    fazerFetchPopularTabela(complemntoUrl, 'Ramal');
+});
 
+select.addEventListener('click',  function definirplaceholder() {
+    const opcaoSelecionada = select.options[select.selectedIndex].value;
+    const complemntoUrl = `/setor?setor=${opcaoSelecionada} `;
+
+    fazerFetchPopularTabela(complemntoUrl, 'Setor');
+});
+
+imputNumber.addEventListener("input", function() {
+    const oQueFoiPesquisado = imputNumber.value;
+    const complemntoUrl = `/aniversario?mes=${oQueFoiPesquisado} `;
+
+    fazerFetchPopularTabela(complemntoUrl, 'Nascimento'); 
+});
+
+function fazerFetchPopularTabela(url, chave) {
     const colocarNaTabela = document.getElementById("tabela");
-    const cabeca = document.getElementById("cabeca");
 
-    fetch(`${apiUrl}/ramal`)
+    fetch(apiUrl + url)
 
     .then(function(resposta){
         const teste = resposta.json();
@@ -17,40 +35,53 @@ function funcionabotao() {
     })
 
     .then(function(user) {
-        colocarNaTabela.innerHTML = ""; 
+        colocarNaTabela.innerHTML = "";
+        let filtro = "";
 
-
-
+        nomearThead(chave);
 
         user.forEach(element => {
             const linha = document.createElement("tr");
             const imprimirNome = document.createElement("td");
-            const imprimirRamal = document.createElement("td");
+            const imprimirChave = document.createElement("td");
+
+            if(chave === 'Setor') filtro = element.setor;
+            if(chave === 'Nascimento') filtro = element.nascimento;
+            if(chave === 'Ramal') filtro = element.ramal;
 
             imprimirNome.appendChild(document.createTextNode(element.nome));
-            imprimirRamal.appendChild(document.createTextNode(element.ramal));
+            imprimirChave.appendChild(document.createTextNode(filtro));
 
             linha.appendChild(imprimirNome);
-            linha.appendChild(imprimirRamal);
+            linha.appendChild(imprimirChave);
 
             colocarNaTabela.appendChild(linha);
-
         });
-        console.log(user)
-
     });
-
-
 }
 
-function definirplaceholder() {
-        const selecionar = document.getElementById("selecao");
-        const opcaoSelecionada = selecionar.options[selecionar.selectedIndex].value;
+function nomearThead(atributo) {
+    const thead = document.getElementById('cabeca');
+    thead.innerHTML = "";
 
-        console.log(opcaoSelecionada);
-        const i = `/setor?setor=${opcaoSelecionada} `;
+    const linha = document.createElement("tr");
+    const imprimirNome = document.createElement("th");
+    const imprimirAtributo = document.createElement("th");
+    
+    imprimirNome.appendChild(document.createTextNode("Nome"));
+    imprimirAtributo.appendChild(document.createTextNode(atributo));
 
-        receberRespostaPopularTabela(i, 'setor');
+    linha.appendChild(imprimirNome)
+    linha.appendChild(imprimirAtributo); 
+
+    thead.appendChild(linha)
+}       
+
+
+
+
+
+
 
         // fetch(`${apiUrl}/setor?setor=${opcaoSelecionada}`)
         // fetch(apiUrl + i)
@@ -63,7 +94,6 @@ function definirplaceholder() {
         // .then(function(user) {
         //     console.log(user)
 
-        //     const colocarNaTabela = document.getElementById("tabela");
         //     colocarNaTabela.innerHTML = "";
 
         //     user.forEach(element => {
@@ -80,76 +110,57 @@ function definirplaceholder() {
         //         colocarNaTabela.appendChild(linha);
         //     });
         // })
-};
-
-imputText.addEventListener("input", function() {
-    const oQueFoiPesquisado = imputText.value;
-    const colocarNaTabela = document.getElementById("tabela");
-
-    fetch(`${apiUrl}/aniversario?mes=${oQueFoiPesquisado}`)
-
-    .then(function(resposta){
-        const teste = resposta.json();
-        return teste
-        })
-    .then(function(user) {
-            const colocarNaTabela = document.getElementById("tabela");
-            colocarNaTabela.innerHTML = "";
-        user.forEach(element => {
-            const linha = document.createElement("tr");
-            const imprimirNome = document.createElement("th");
-            const imprimirRamal = document.createElement("th");
-
-            imprimirNome.appendChild(document.createTextNode(element.nome));
-            imprimirRamal.appendChild(document.createTextNode(element.nascimento));
-
-            linha.appendChild(imprimirNome);
-            linha.appendChild(imprimirRamal);
-
-            colocarNaTabela.appendChild(linha);
-        });
-    })        
-})
 
 
 
-function receberRespostaPopularTabela(url, chave) {
-    const colocarNaTabela = document.getElementById("tabela");
+            // fetch(`${apiUrl}/aniversario?mes=${oQueFoiPesquisado}`)
 
-    fetch(apiUrl + url)
+    // .then(function(resposta){
+    //     const teste = resposta.json();
+    //     return teste
+    //     })
+    // .then(function(user) {
+    //         colocarNaTabela.innerHTML = "";
+    //         nomearThead('Nascimento')
 
-    .then(function(resposta){
-        const teste = resposta.json();
-        return teste
-    })
+    //     user.forEach(element => {
+    //         const linha = document.createElement("tr");
+    //         const imprimirNome = document.createElement("td");
+    //         const imprimirRamal = document.createElement("td");
 
-    .then(function(user) {
-        colocarNaTabela.innerHTML = "";
+    //         imprimirNome.appendChild(document.createTextNode(element.nome));
+    //         imprimirRamal.appendChild(document.createTextNode(element.nascimento));
 
-        user.forEach(element => {
-            const linha = document.createElement("tr");
-            const imprimirNome = document.createElement("th");
-            const imprimirChave = document.createElement("th");
+    //         linha.appendChild(imprimirNome);
+    //         linha.appendChild(imprimirRamal);
 
-            imprimirNome.appendChild(document.createTextNode(element.nome));
-            imprimirChave.appendChild(document.createTextNode(`${element}.${chave}`));
+    //         colocarNaTabela.appendChild(linha);
+    //     });
+    // })   
 
-            console.log(imprimirChave);
-            linha.appendChild(imprimirNome);
-            linha.appendChild(imprimirChave);
 
-            colocarNaTabela.appendChild(linha);
-        });
+     // fetch(`${apiUrl}/ramal`)
 
-    });
-};
+    //     .then(function(resposta){
+    //         const teste = resposta.json();
+    //         return teste;
+    //     })
 
-        // const linha2 = document.createElement("tr");
-        // const teste = document.createElement("th");
-        // const teste2 = document.createElement("th");
+    //     .then(function(user) {
+    //         colocarNaTabela.innerHTML = ""; 
+    //         nomearThead('Ramal');
 
-        // teste.appendChild(document.createTextNode("Nome"));
-        // teste.appendChild(document.createTextNode("Nome"));
+    //         user.forEach(element => {
+    //             const linha = document.createElement("tr");
+    //             const imprimirNome = document.createElement("td");
+    //             const imprimirRamal = document.createElement("td");
 
-        // linha2.appendChild(teste);
-        // cabeca.appendChild(linha2)
+    //             imprimirNome.appendChild(document.createTextNode(element.nome));
+    //             imprimirRamal.appendChild(document.createTextNode(element.ramal));
+
+    //             linha.appendChild(imprimirNome);
+    //             linha.appendChild(imprimirRamal);
+
+    //             colocarNaTabela.appendChild(linha);
+    //         });
+    //     });
