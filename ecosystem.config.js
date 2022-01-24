@@ -6,12 +6,12 @@ module.exports = {
         name: 'Backend',
         watch: true
       },
-      // {
-      //   script: 'frontend/index.js',
-      //   cwd: 'frontend/',
-      //   name: 'Frontend',
-      //   watch: true
-      // }
+      {
+        script: 'frontend/server.js',
+        cwd: 'frontend/',
+        name: 'Frontend',
+        watch: true
+      }
     ]
   }
   

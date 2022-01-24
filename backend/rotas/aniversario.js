@@ -2,7 +2,6 @@ const funcioarios = require("../dados.js");
 
 function funcionariosAniversariantes(req, res) {
     const mes = req.query.mes;
-    
     if(mes){
         function filtrarAniversariantes(mes) {
 

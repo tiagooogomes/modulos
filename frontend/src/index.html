@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <title>Document</title>
+    </head>
+    <body>
+        <main>
+            <h1>Consulta a Empresa</h1>
+            <div id="filtros">
+                <select onclick="definirplaceholder()" id="selecao">
+                    <option disabled value selected ></option>
+                    <option value="RH">Recursos Humanos</option>
+                    <option value="administração">Administração</option>
+                    <option value="operação">Operação</option>
+                    <option value="comercial">Comercial</option>
+                    <option value="financeiro">Financiero</option>
+                </select>
+                <input type="button"  value="Ramal" id="botao" onclick="funcionabotao()"> 
+                <input type="number" min="1" max="12" id="num" placeholder="Aniversario">
+            </div>
+
+            <!-- <div id="tabelapai"> -->
+                <table>
+                    <thead id="cabeca">
+                        <th>Nome</th>
+                        <th>Ramal</th>
+                    </thead>
+                    <tbody id="tabela">
+
+                    </tbody>
+                </table>
+            <!-- </div> -->
+
+
+
+
+            
+        </main>
+        <footer>
+            <h2>By Apirante Tiago Santos</h2>
+        </footer>
+    </body>
+    <script src="script.js"></script>
+</html>
