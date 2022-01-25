@@ -1,8 +1,14 @@
-const funcioarios = require("../dados.js");
+const fs = require('fs');
+
+
 
 function funcionariosAniversariantes(req, res) {
+
+    const data = fs.readFileSync('dados.json');
+const funcioarios = JSON.parse(data);
+
     const mes = req.query.mes;
-    
+
     function filtrarAniversariantes(mes) {
 
         if(mes < 1 || mes > 12 || Number.isInteger(mes) === true) {

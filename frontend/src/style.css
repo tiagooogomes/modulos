@@ -50,6 +50,44 @@ input::placeholder{
     font-size: 30px;
 }
 
+form{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+}
+
+form input{
+    width: 11.5%;
+    height: 35px;
+    font-size: 20px;
+}
+
+#nome{
+    width: 17%;
+}
+
+#matricula, #ramal {
+    width: 8%;
+}
+
+#email{
+    width: 18%;
+}
+
+#submeter{
+    background-color: #B8B7BD;
+    color: #0E1A26;
+    width: 11%;
+    height: 43px;
+}
+
+form input::placeholder{
+    
+    font-size: 15px;
+}
+
 table{
 
     text-align: center;

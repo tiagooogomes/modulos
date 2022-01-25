@@ -1,4 +1,5 @@
 const funcionariosAniversariantes = require("./rotas/aniversario.js");
+const adicionarNovoFuncionario = require("./rotas/adicionar.js");
 const funcionariosComRamais = require("./rotas/ramais.js");
 const funcionariosPorSetor = require("./rotas/setor.js");
 const express = require("express");
@@ -7,11 +8,9 @@ const app = express();
 const port = 3001;
 
 app.use(cors());
+app.use(express.json());
 
-// teste.post('/teste', function(req, res) { 
-//     const acess = req.body;
-
-// })
+app.post('/adicionar', adicionarNovoFuncionario);
 app.get('/setor', funcionariosPorSetor);
 app.get('/aniversario', funcionariosAniversariantes);
 app.get('/ramal', funcionariosComRamais);
