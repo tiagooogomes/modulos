@@ -2,14 +2,12 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
         <link rel="stylesheet" href="style.css" type="text/css">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-        <title>Document</title>
+        <title>CONSULTA</title>
     </head>
     <body>
         <main>
@@ -26,27 +24,29 @@
                 <input type="button"  value="Ramal" id="botao" > 
                 <input type="number" min="1" max="12" id="numero" placeholder="Aniversario">
             </div>
+            <h3>Consultar funcionarios</h3>
             <form>
                 <input type="number" placeholder="Matricula" id="matricula" />
                 <input type="text" placeholder="Nome" id="nome" />
                 <input type="number" placeholder="Ramal" id="ramal" />
-                <input type="text" placeholder="Setor" id="setor">
+                <select id="novo-setor">
+                    <option disabled value selected >Setor</option>
+                    <option value="RH">Recursos Humanos</option>
+                    <option value="administração">Administração</option>
+                    <option value="operação">Operação</option>
+                    <option value="comercial">Comercial</option>
+                    <option value="financeiro">Financiero</option>
+                </select>
+                <!-- <input type="text" placeholder="Setor" id="setor"> -->
                 <input type="date" id="nascimento">
                 <input type="text" placeholder="Email" id="email">
                 <input type="button" value="Cadastrar" id="submeter">
             </form>
-
-            <!-- <div id="tabelapai"> -->
-                <table>
-                    <thead id="cabeca">
-                        <!-- <th>Nome</th>
-                        <th>Ramal</th> -->
-                    </thead>
-                    <tbody id="tabela">
-
-                    </tbody>
-                </table>
-            <!-- </div> --> 
+            <h3>Cadastrar novos funcionarios</h3>
+            <table>
+                <thead id="cabeca"> </thead>
+                <tbody id="tabela"> </tbody>
+            </table>
         </main>
         <footer>
             <h2>By Apirante Tiago Santos</h2>

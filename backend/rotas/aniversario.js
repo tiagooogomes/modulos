@@ -1,11 +1,8 @@
 const fs = require('fs');
 
-
-
 function funcionariosAniversariantes(req, res) {
-
     const data = fs.readFileSync('dados.json');
-const funcioarios = JSON.parse(data);
+    const funcioarios = JSON.parse(data);
 
     const mes = req.query.mes;
 

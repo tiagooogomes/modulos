@@ -1,9 +1,6 @@
 const fs = require('fs');
 
-
-
 function funcionariosComRamais(req, res) {
-
     const data = fs.readFileSync('dados.json');
     const funcioarios = JSON.parse(data);
 

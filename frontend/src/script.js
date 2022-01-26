@@ -1,4 +1,5 @@
 const colocarNaTabela = document.getElementById("tabela");
+const novoSetor = document.getElementById('novo-setor')
 const imputNumber = document.getElementById('numero');
 const imputButton = document.getElementById('botao');
 const buttom = document.getElementById('submeter');
@@ -27,12 +28,14 @@ imputNumber.addEventListener("input", function() {
 
 buttom.addEventListener('click', function submeterFormulario() {
 
-    const nascimento = new Date(document.getElementById('nascimento')).toLocaleDateString('pt-BR', {year: 'numeric', month: 'numeric', day: 'numeric'});
+    const nascimento = new Date(document.getElementById('nascimento').value).toLocaleDateString('pt-BR');
     const matricula = document.getElementById('matricula').value;
     const ramal = document.getElementById('ramal').value;
-    const setor = document.getElementById('setor').value;
+    const setor = novoSetor.options[novoSetor.selectedIndex].value;
     const email = document.getElementById('email').value;
     const nome = document.getElementById('nome').value;
+   
+    console.log(nascimento);
 
     fetch(apiUrl + '/adicionar', {
         method: 'POST',
@@ -48,29 +51,22 @@ buttom.addEventListener('click', function submeterFormulario() {
     })
 
         .then(function(resposta){
-            console.log(resposta);
             const teste = resposta.json();
-            console.log(teste)
             return teste;
         })
 
         .then(function(data) {
             console.log(data)
-        })
-
-})
-
-
-
-
-const mapa = {
-    'Ramal': 'ramal',
-    'Setor': 'setor',
-    'Nascimento': 'nascimento'
-}
+        });
+});
 
 function fazerFetchPopularTabela(url, chave) {
     const colocarNaTabela = document.getElementById("tabela");
+    const mapa = {
+        'Ramal': 'ramal',
+        'Setor': 'setor',
+        'Nascimento': 'nascimento'
+    }
 
     fetch(apiUrl + url)
 
@@ -114,8 +110,8 @@ function nomearThead(atributo) {
     imprimirNome.appendChild(document.createTextNode("Nome"));
     imprimirAtributo.appendChild(document.createTextNode(atributo));
 
-    linha.appendChild(imprimirNome)
+    linha.appendChild(imprimirNome);
     linha.appendChild(imprimirAtributo); 
 
-    thead.appendChild(linha)
+    thead.appendChild(linha);
 }       

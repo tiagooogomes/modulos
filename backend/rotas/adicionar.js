@@ -1,7 +1,6 @@
 const fs = require('fs');
 
 function adicionarNovoFuncionario(req, res) { 
-
     const data = fs.readFileSync('dados.json');
     const funcioarios = JSON.parse(data);
 
@@ -12,6 +11,5 @@ function adicionarNovoFuncionario(req, res) {
     fs.writeFileSync('dados.json', JSON.stringify(funcioarios));
     res.json(acess)
 }
-
 
 module.exports = adicionarNovoFuncionario;
